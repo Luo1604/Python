@@ -22,7 +22,7 @@
         op = Element("output")
         def clear (*arg, **kwags):
             input_text.clear()
-        def count():
+        def count(*arg, **kwags):
             number = len(input_text.value)
             op.write(number)
     </py-script>
