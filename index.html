@@ -3,19 +3,35 @@
         <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
         <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
         <style>
-        h1{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        }
+            h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+            div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+            }
+            button{
+            background-color: Black;
+            color: white;
+            border-radius: 5px;
+            }
         </style>
     </head>
-<body>
-    <py-env>
-    - numpy
-    - pandas
-    </py-env>
-    <h1>Interactive shell</h1>
-    <py-repl id="my-repl" auto-generate=true> </py-repl>
-</body>
+    <body>
+        <h1>PyScript Events</h1>
+        <div>
+        <button id="change_me"> Press me ! </button>
+        </div>
+        <py-script>
+        import pyodide
+        def on_click(e):
+        e.target.innerHTML = "Tada !!! you pressed me !."
+        change_me_element = document.getElementById('change_me')
+        change_me_element.addEventListener('click', pyodide.create_proxy(on_click))
+        </py-script>
+    </body>
 </html>
