@@ -85,7 +85,7 @@
       import json
       import asyncio
       import re
-      from bs4 import BeatifulSoup 
+      from bs4 import BeautifulSoup
       response = await pyfetch(url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=198700fd07cfb27eb62679f850c5d048", method="GET")
       cal= str('C')
       output = f'{await response.json()}'
