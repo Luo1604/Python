@@ -36,29 +36,22 @@
         - scikit-learn
         - beautifulsoup4
         - requests
-        - paths:
-            - test.py
-            - index.py
-            - X
-            - Y
-            - model
-            - vectorizer
-            - stopword
         
         
     </py-env>
     <py-script>
-        from test import main
-        from index import get_testdata
-        op = Element("output")
-        def sub(*args, **kwargs):
-            content = Element('path')
-            string = get_testdata(str(content.value))
-            if (isinstance(string, str)):
-                op.write(string)    
-            else:
-                op.write(string)
-    
+from pyodide.http import pyfetch
+import json
+import asyncio
+import re
+      
+
+async def get(u):
+    res = await pyfetch(url=u, method="GET")
+    output = f'{await response.json()}'
+    obj = BeautifulSoup(output, 'html.parser')
+    return obj
+print(get("https://www.andreasjakl.com/raycast-anchor-placing-ar-foundation-holograms-part-3/"))
     </py-script>
 </body>
 =======
