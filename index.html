@@ -1,0 +1,16 @@
+<html>
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-env>
+    - requests
+  </py-env>
+  <body>
+    Hello, world!
+    <div id="outputDiv" class="font-mono"></div>
+    <py-script>
+import requests
+r = requests.get('https://myexternalip.com/raw')
+pyscript.write("outputDiv", r.text)
+    </py-script>
+  </body>
+</html>
