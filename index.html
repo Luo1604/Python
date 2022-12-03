@@ -85,21 +85,28 @@
       import json
       import asyncio
       import re
-      from bs4 import BeautifulSoup
       response = await pyfetch(url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=198700fd07cfb27eb62679f850c5d048", method="GET")
-      cal= str('C')
+      
       output = f'{await response.json()}'
       def jj(output):
       
-        obj = BeautifulSoup(output, 'html.parser')
-        return obj
+        str1 = output.replace("\'", "\"")
+        st= json.loads(str1)
+        
+          
+         
+        return st
         
           
          
       
       
       
-      pyscript.write( jj(output))
+      pyscript.write('tMetric', jj(output)['name'])
+      pyscript.write('tempDisplay', "{} °C".format(round(jj(output)['main']['temp']- 273.15,3)))
+      pyscript.write('tImperial', jj(output)['sys']['country'])
+      pyscript.write('humidDisplay', "{} Humidity".format(jj(output)['main']['humidity']))
+      pyscript.write('windDisplay', "{} Wind Speed".format(jj(output)['wind']['speed']))
       
       
           </py-script>
